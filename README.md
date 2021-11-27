@@ -12,11 +12,22 @@
   Swipe Two Pages using Vanilla JS.
 </p>
 
+<p align="center">
+  <img src="./docs/img/screenshot_swipe_page_iphone_5.png" alt="Screenshot Swipe">
+</p>
+
+
 ## 🧐 About <a name = "about"></a>
 
-Code from [swipe pages in pure javascript](https://www.youtube.com/watch?v=bV9idMbioqg) by [Real Project Mastery](https://www.youtube.com/channel/UCm8qqU47OfA_3jforf37cwg).
+Transcription of the code from [swipe pages in pure javascript](https://www.youtube.com/watch?v=bV9idMbioqg) by [Real Project Mastery](https://www.youtube.com/channel/UCm8qqU47OfA_3jforf37cwg).
+
+## 🔧 Desktop browsers
+
+To test on a desktop browser, go to **DevTools**, and then click on *Toggle device toolbar*.
+
+<img src="./docs/img/screenshot_swipe.png" alt="Screenshot DevTools">
 
 ## 🎉 References <a name = "references"></a>
 
-- [swipe pages in pure javascript](https://www.youtube.com/watch?v=bV9idMbioqg)
+- [Swipe pages in pure javascript](https://www.youtube.com/watch?v=bV9idMbioqg)
 - [The Touch Event](https://www.w3schools.com/jsref/obj_touchevent.asp)
