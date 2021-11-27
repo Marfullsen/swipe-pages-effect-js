@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es-cl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swipe on Mobile Devices</title>
+  <style>
+    .center {
+      font-size: 300%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .page1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: red;
+    }
+    .page2 {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100vw;
+      height: 100vh;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div
+    class="page1"
+    id="page1"
+    ontouchstart="p1handleTouchStart(event)"
+    ontouchmove="p1handleTouchMove(event)"
+    ontouchend="p1handleTouchEnd(event)"
+    >
+    <span class="center">Page 1</span>
+  </div>
+  <div
+    class="page2"
+    id="page2"
+    ontouchstart="p2handleTouchStart(event)"
+    ontouchmove="p2handleTouchMove(event)"
+    ontouchend="p2handleTouchEnd(event)"
+    >
+    <span class="center">Page 2</span>
+  </div>
+  <script>
+    var p1 = document.getElementById('page1');
+    var p2 = document.getElementById('page2');
+
+    var startingX;
+
+    function p1handleTouchStart(evt) {
+      startingX = evt.touches[0].clientX;
+    };
+
+    function p1handleTouchMove(evt) {
+      var touch = evt.touches[0];
+      var change = startingX - touch.clientX;
+      if (change < 0) {
+        return;
+      }
+      p1.style.left = '-' + change + 'px';
+      p2.style.display = 'block';
+      p2.style.left = (screen.width - change) + 'px';
+      evt.preventDefault();
+    };
+
+    function p1handleTouchEnd(evt) {
+      var change = startingX - evt.changedTouches[0].clientX;
+      var threshold = screen.width / 3;
+      if (change < threshold) {
+        p1.style.left = 0;
+        p2.style.left = '100%';
+        p2.style.display = 'none';
+      } else {
+        p1.style.transition = 'all .3s';
+        p2.style.transition = 'all .3s';
+        p1.style.left = '-100%';
+        p2.style.left = '0';
+        p2.style.display = 'block';
+      }
+    }
+
+    function p2handleTouchStart(evt) {
+      startingX = evt.touches[0].clientX;
+      p1.style.transition = '';
+      p2.style.transition = '';
+      p1.style.display = 'none';
+    };
+
+    function p2handleTouchMove(evt) {
+      var touch = evt.touches[0];
+      var change = touch.clientX - startingX;
+      if (change < 0) {
+        return;
+      }
+      p1.style.display = 'block';
+      p1.style.left = (change - screen.width) + 'px';
+      p2.style.left = change + 'px';
+      evt.preventDefault();
+    };
+
+    function p2handleTouchEnd(evt) {
+      var change = evt.changedTouches[0].clientX - startingX;
+      var half = screen.width / 4;
+      if (change < half) {
+        p1.style.left = '-100%';
+        p1.style.display = 'none';
+        p2.style.left = '0';
+      } else {
+        p1.style.transition = 'all .3s';
+        p2.style.transition = 'all .3s';
+        p1.style.left = '0';
+        p2.style.left = '100%';
+      }
+    }
+  </script>
+</body>
+</html>
